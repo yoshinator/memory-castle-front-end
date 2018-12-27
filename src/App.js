@@ -9,7 +9,7 @@ class App extends Component {
   state = {
         users: [],
         inputBox: "",
-        currentUser: []
+        currentUser: {}
   }
     
   componentDidMount(){
@@ -32,43 +32,40 @@ class App extends Component {
       this.setState({currentUser: found})
       console.log(this.state.currentUser)
     }
-
     else {
-      // { key: 'value', key: { key: 'value', key: 'value'} }
-      ApiAdapter.createItem({name: this.state.inputBox})
-      .then(resp => {
-        if (resp.ok){
-          // Can be optimized later to just set state with out fetching from db again.
-          ApiAdapter.getAll()
-            .then(users => this.setState({ users }))
-          return resp.json()
-        }
-        else {
-          console.error(resp)
-          return resp.json()
-        }
-      }).then(currentUser => this.setState({currentUser}))
+      this.createNewUser().then(currentUser =>
+        this.setState({ currentUser })
+      );
     }
   }
 
-  // I can refactor setCurrentUser but probably not worth it leave here for now as reminder
-  createNewUser = username => {
-
+  createNewUser = () => {
+    ApiAdapter.createItem({ name: this.state.inputBox })
+      .then(resp => {
+        if (resp.ok) {
+          // Can be optimized later to just set state with out fetching from db again.
+          ApiAdapter.getAll()
+            .then(users => this.setState({ users }))
+        }
+        else {
+          console.error(resp)  
+        }
+        return resp.json()
+      })
   }
 
-
   render() {
-    return (
-      <div className="App">
+    return <div className="App">
         <header className="App-header">
-          <form onSubmit={this.setCurrentUser} >
+          <form onSubmit={this.setCurrentUser}>
             <input onChange={this.findUser} type="text" name="user" value={this.state.inputBox} />
-            <button type="submit" name="submit">Sign in or Change User</button>
+            <button type="submit" name="submit">
+              Sign in or Change User
+            </button>
           </form>
         </header>
-        <Castles username={this.state.currentUser.name} castles={this.state.currentUser.castles} />
-      </div>
-    );
+        <Castles user={this.state.currentUser[0]} /> 
+      </div>;
   }
 }
 
