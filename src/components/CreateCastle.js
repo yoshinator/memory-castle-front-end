@@ -8,9 +8,9 @@ class CreateCastle extends Component {
   constructor(props){
     super(props);
     this.state = {
-      name: "house",
-      user_id: 1,
-      image: "../memory-castle-front-end/public/images/1.jpg"
+      name: "",
+      user_id: this.props.userId,
+      image: ""
     }
   }
 

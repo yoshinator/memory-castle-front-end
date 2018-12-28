@@ -18,7 +18,7 @@ const User = ({user}) => {
     return (
       <>
         <Welcome user={user} />
-        <CreateCastle />
+        <CreateCastle userId={user.id}/>
         <Castles castles={user.castles}/>
       </>
     )
@@ -27,7 +27,7 @@ const User = ({user}) => {
         <Welcome user={user} />
         <div>
           You don't have any castles create one.
-          <CreateCastle />
+        <CreateCastle userId={user.id} />
         </div>
       </>;
   }
