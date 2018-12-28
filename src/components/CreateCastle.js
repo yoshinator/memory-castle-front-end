@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import JSONAPIAdapter from "../JSONAPIAdpater";
+const ApiAdapter = new JSONAPIAdapter("api/v1/castles/");
+
 
 class CreateCastle extends Component {
 
@@ -7,14 +10,21 @@ class CreateCastle extends Component {
     this.state = {
       name: "house",
       user_id: 1,
-      image: "../memory-castle-front-end/public/images/1.jpg",
-      memories: []
+      image: "../memory-castle-front-end/public/images/1.jpg"
     }
   }
 
   createCastle = (event) => {
     event.preventDefault()
-    console.log(this.state)
+    ApiAdapter.createItem(this.state)
+      .then(resp => {
+        if (resp.ok) {
+          //send castle to update user state at user level
+        }else {
+          console.error(resp)
+        }
+        return resp.json()
+      }).then(newCastleData => console.log(newCastleData))
   }
 
   handleChange = (event) => {
