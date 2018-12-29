@@ -13,21 +13,20 @@ const Welcome = ({user}) => {
   )
 }
 
-const User = ({user}) => {
+
+const User = ({ user, updateCurrentUser}) => {
   if (user.castles.length > 0 ){
-    return (
-      <>
+    return <>
         <Welcome user={user} />
-        <CreateCastle userId={user.id}/>
-        <Castles castles={user.castles}/>
-      </>
-    )
+        <CreateCastle user={user} updateCurrentUser={updateCurrentUser} />
+        <Castles castles={user.castles} />
+      </>;
   } else {
     return <>
         <Welcome user={user} />
         <div>
           You don't have any castles create one.
-        <CreateCastle userId={user.id} />
+        <CreateCastle user={user} updateCurrentUser={updateCurrentUser}/>
         </div>
       </>;
   }
