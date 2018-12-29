@@ -27,7 +27,6 @@ class CreateCastle extends Component {
       }).then(newCastleData => {
         let newUser = this.props.user
          newUser.castles = this.props.user.castles.concat(newCastleData)
-        console.log(newUser)
         this.props.updateCurrentUser(newUser)
       })
   }

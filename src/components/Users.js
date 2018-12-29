@@ -39,6 +39,12 @@ import User from './User';
      }
    }
 
+   updateCurrentUser = (user) => {
+      this.setState({
+        currentUser: user
+      })
+   }
+
    createNewUser = () => {
     return this.props.ApiAdapter.createItem({ name: this.state.inputBox })
        .then(resp => {
@@ -73,7 +79,7 @@ import User from './User';
             Sign in or Change User
           </button>
         </form>
-        <User className="user-component" user={this.state.currentUser} ApiAdapter={this.props.ApiAdapter}/>
+        <User className="user-component" user={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} ApiAdapter={this.props.ApiAdapter}/>
         </>
       )
     }
