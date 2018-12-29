@@ -9,7 +9,7 @@ class CreateCastle extends Component {
     super(props);
     this.state = {
       name: "",
-      user_id: this.props.userId,
+      user_id: this.props.user.id,
       image: ""
     }
   }
@@ -24,7 +24,12 @@ class CreateCastle extends Component {
           console.error(resp)
         }
         return resp.json()
-      }).then(newCastleData => console.log(newCastleData))
+      }).then(newCastleData => {
+        let newUser = this.props.user
+         newUser.castles = this.props.user.castles.concat(newCastleData)
+        console.log(newUser)
+        this.props.updateCurrentUser(newUser)
+      })
   }
 
   handleChange = (event) => {
