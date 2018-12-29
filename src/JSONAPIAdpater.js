@@ -28,6 +28,17 @@ class JSONAPIAdapter {
       body: JSON.stringify(body)
     });
   }
+
+  deleteItem(id){
+    return fetch(`${this.endpoint}/${id}`, {
+      method: "DELETE", 
+      headers: this.headers
+    })
+      .then(response => response.json()); 
+  }
+
+  
 }
+
 
 export default JSONAPIAdapter;
