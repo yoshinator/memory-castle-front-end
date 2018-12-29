@@ -16,12 +16,14 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">
+    return (
+    <div className="App">
         <header className="App-header">
           Welcome to Memory Castle
         </header>
         <Users users={this.state.users}  ApiAdapter={ApiAdapter}/>
-      </div>;
+      </div>
+    )
   }
 }
 
