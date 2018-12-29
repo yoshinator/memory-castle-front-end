@@ -19,7 +19,7 @@ const User = ({ user, updateCurrentUser}) => {
     return <>
         <Welcome user={user} />
         <CreateCastle user={user} updateCurrentUser={updateCurrentUser} />
-        <Castles castles={user.castles} />
+        <Castles castles={user.castles} updateCurrentUser={updateCurrentUser} user={user} />
       </>;
   } else {
     return <>
