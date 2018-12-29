@@ -67,13 +67,13 @@ import User from './User';
     else {
       return (
         <>
-        <form onSubmit={this.setCurrentUser}>
+        <form className="sign-in-form" onSubmit={this.setCurrentUser}>
           <input onChange={this.findUser} type="text" name="user" value={this.state.inputBox} />
           <button type="submit" name="submit">
             Sign in or Change User
           </button>
         </form>
-        <User user={this.state.currentUser} ApiAdapter={this.props.ApiAdapter}/>
+        <User className="user-component" user={this.state.currentUser} ApiAdapter={this.props.ApiAdapter}/>
         </>
       )
     }
