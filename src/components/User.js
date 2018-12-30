@@ -22,13 +22,15 @@ const User = ({ user, updateCurrentUser}) => {
         <Castles castles={user.castles} updateCurrentUser={updateCurrentUser} user={user} />
       </>;
   } else {
-    return <>
+    return (
+      <>
         <Welcome user={user} />
-        <div>
+        <div className="no-castle-splash">'
           You don't have any castles create one.
-        <CreateCastle user={user} updateCurrentUser={updateCurrentUser}/>
         </div>
-      </>;
+        <CreateCastle user={user} updateCurrentUser={updateCurrentUser}/>
+      </>
+      )
   }
 }
 
