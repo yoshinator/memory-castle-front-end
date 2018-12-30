@@ -5,7 +5,12 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/castles");
 
 export default class Castle extends Component {
 
+  state ={
+    expanded: false
+  }
+
   handleExpand = () => {
+    this.setState({expanded: !this.state.expanded})
 
   }
 
@@ -14,18 +19,43 @@ export default class Castle extends Component {
     .then(resp => this.props.updateCurrentUser(resp))
   }
 
-  render() {
+  jsxBuilder = () => {
     return (
-      <div className="castle-card">
-        <h2 className="castle-card-header">{this.props.castle.name}</h2>
-        <img src={this.props.castle.image} alt={this.props.castle.name} />
+      <>
+        <h2 className="castle-card-header">{this.props.castle.name} </h2>
         <button className="expand-castle" onClick={this.handleExpand}>
           Expand Castle
         </button>
         <button className="delete-castle" onClick={this.handleDelete}>
           Delete Castle
-        </button>
-      </div>
+       </button>
+       </>
     )
+  }
+
+  addMemory = () => {
+    
+  }
+
+
+
+  render() {
+    const style = {
+      background: `url(${this.props.castle.image})`
+    }
+
+    if (this.state.expanded === false){
+      return (
+        <div className="castle-card" style={style} >
+          {this.jsxBuilder()}
+        </div>
+      )
+    } else {
+      return (
+        <div className="castle-card-expanded" onClick={this.addMemory} style={style} >
+         {this.jsxBuilder()}
+        </div>
+      )
+    }
   }
 }
