@@ -28,6 +28,10 @@ class CreateCastle extends Component {
         let newUser = this.props.user
          newUser.castles = this.props.user.castles.concat(newCastleData)
         this.props.updateCurrentUser(newUser)
+        this.setState({
+          name: "",
+          image: ""
+        })
       })
   }
 
