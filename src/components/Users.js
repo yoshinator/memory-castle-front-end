@@ -61,14 +61,12 @@ import User from './User';
 
   render() {
     if (this.isEmpty(this.state.currentUser)){
-      return (
-        <form onSubmit={this.setCurrentUser}>
+      return <form className="sign-in-form" onSubmit={this.setCurrentUser}>
           <input onChange={this.findUser} type="text" name="user" value={this.state.inputBox} />
           <button type="submit" name="submit">
             Sign in or Change User
           </button>
-        </form>
-      )
+        </form>;
     }
     else {
       return (
@@ -79,7 +77,7 @@ import User from './User';
             Sign in or Change User
           </button>
         </form>
-        <User className="user-component" user={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} ApiAdapter={this.props.ApiAdapter}/>
+        <User user={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} ApiAdapter={this.props.ApiAdapter}/>
         </>
       )
     }
