@@ -11,9 +11,7 @@ class Castles extends Component {
 
   render() {
   
-    return(
-      <div>{this.renderCastles()}</div>
-    )
+    return <div className="castles-container" >{this.renderCastles()}</div>;
 
     }
 
