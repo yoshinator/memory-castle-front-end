@@ -91,6 +91,15 @@ body {
     width: 10%;
 }
 
+.create-memory-form {
+    display: fixed;
+    background: none repeat scroll 0 0 gold;
+    height: 3%;
+    position: absolute;
+    /* right: 18.1%;
+    top: 68.9%; */
+    width: 10%;
+}
 .castle-card img {
   display: none;
 }
