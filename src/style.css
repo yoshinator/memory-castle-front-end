@@ -55,14 +55,42 @@ body {
   width: 80%;
   height: 150px;
 
+}   
+
+/* .castle-card-expanded {
+  display: block;
+  position:absolute; top:0; bottom:0; left:10px;
+  min-width: 100%;
+
+} */
+
+/* .memory {
+  position: fixed;
+  width: 80px;
+  
+} */
+.castle-card-expanded{
+  width:100%;
+  top:0%;
+  left:0%;
+  position:fixed;
 }
 
-.castle-card-expanded {
-  display: block;
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
+.castle-card-expanded img {
+  width: 100%
 }
+
+
+.memory{
+    display: fixed;
+    background: none repeat scroll 0 0 gold;
+    height: 3%;
+    position: absolute;
+    /* right: 18.1%;
+    top: 68.9%; */
+    width: 10%;
+}
+
 .castle-card img {
   display: none;
 }
