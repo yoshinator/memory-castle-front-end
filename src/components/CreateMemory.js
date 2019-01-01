@@ -24,12 +24,11 @@ class CreateMemory extends Component {
         }
         return resp.json()
       }).then(newMemoryData => {
-        let memories = this.props.castle.memories
-        memories = this.props.castle.memories.concat(newMemoryData)
-        this.props.updateCastle(memories)
+        this.props.updateCastle(newMemoryData)
         this.setState({
           x: "",
-          y: ""
+          y: "", 
+          text: ""
         })
       })
   }
