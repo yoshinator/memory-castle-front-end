@@ -100,6 +100,15 @@ body {
     top: 68.9%; */
     width: 10%;
 }
+
+.delete-memory {
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    border-radius: 50%;
+    background: rgb(100, 100, 100, .4);
+}
+
 .castle-card img {
   display: none;
 }
