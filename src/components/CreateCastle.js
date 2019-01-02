@@ -42,15 +42,13 @@ class CreateCastle extends Component {
   }
 
   render(){
-    return (
-      <div className="create-castle-form">
+    return <div className="create-castle-form">
         <form onSubmit={this.createCastle}>
           <input type="text" onChange={this.handleChange} placeholder="castle name" name="name" value={this.state.name} />
           <input type="text" onChange={this.handleChange} placeholder="Image url" name="image" value={this.state.image} />
           <button type="submit">Create Castle</button>
         </form>
-      </div>
-    )
+      </div>;
 
   }
 }
