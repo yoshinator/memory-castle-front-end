@@ -56,7 +56,7 @@ class CreateMemory extends Component {
       return (
         <div className="create-memory-form" style={{ left: `${this.state.x}`, top: `${this.state.y}` }}> 
           <form onSubmit={this.createMemory} >
-            <input type="text" onChange={this.handleChange} placeholder="What do you want to rember?" name="text" value={this.state.text} autoFocus/>
+            <input type="text" onChange={this.handleChange} placeholder="What do you want to remember?" name="text" value={this.state.text} autoFocus/>
             <button type="submit">Create Memory</button>
           </form>
         </div>
