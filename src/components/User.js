@@ -26,7 +26,7 @@ const User = ({ user, updateCurrentUser}) => {
     return (
       <>
         <Welcome user={user} />
-        <div className="no-castle-splash">'
+        <div className="no-castle-splash">
           You don't have any castles create one.
         </div>
         <CreateCastle user={user} updateCurrentUser={updateCurrentUser}/>

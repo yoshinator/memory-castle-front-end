@@ -27,17 +27,12 @@ import User from './User';
    }
 
    setCurrentUser = (event) => {
-     event.preventDefault()
-     const found = this.props.users.filter(user => user.name === this.state.inputBox)
-     if (found.length) {
-       this.setState({ currentUser: found[0] })
-     }
-     else {
+      event.preventDefault()
        this.createNewUser().then(currentUser =>
          this.setState({ currentUser }, () => console.log(this.state.currentUser))
        );
-     }
-   }
+    }
+  
 
    updateCurrentUser = (user) => {
       this.setState({
