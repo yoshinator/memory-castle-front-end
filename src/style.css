@@ -1,30 +1,3 @@
-@font-face {
-    font-family: SansForgetica;
-    src: url("SansForgetica-Regular.otf") format("opentype");
-}
-body {
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-  min-width: 850px;
-  height: 100vh;
-  position: relative;
-  background: #b9b6b6cc;
-  z-index: 1;
-
-}
-
-Body::before {
-  content: "";
-  position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100vh;  
-  opacity: .3; 
-  z-index: -1;
-  background: url("bg-bricks.jpg");
-}
 
 .App {
   padding: 0;
