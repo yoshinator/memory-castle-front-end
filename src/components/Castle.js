@@ -34,10 +34,10 @@ export default class Castle extends Component {
       <>
         <h2 className="castle-card-header">{this.props.castle.name} </h2>
         <button className="expand-castle" onClick={this.handleExpand}>
-          Expand Castle
+          Min
         </button>
         <button className="delete-castle" onClick={this.handleDelete}>
-          Delete Castle
+          X
        </button>
        </>
     )
@@ -49,7 +49,6 @@ export default class Castle extends Component {
     this.setState({
       memories
     })
-
   }
 
   componentDidMount() {
@@ -81,31 +80,41 @@ export default class Castle extends Component {
 
   updateMemory = (memoryId) => {
     console.log(memoryId)
+    this.setState({editing: true})
     let div = document.getElementById(`memory-${memoryId}`)
-    console.log(div)
+    if (this.state.editing) {
+      console.log("in div I want to hid")
+      div.style.display = "hidden"
+    }
+    document.addEventListener("click", () => this.setState({editing: false}))
   }
 
 
   render() {
-    console.log("castle props ", this.props)
-    const styleNotExpanded = {
-      background: `url(${this.props.castle.image})`,
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover"
-    }
+  
 
     if (this.state.expanded === false){
+      const styleNotExpanded = {
+        background: `url(${this.props.castle.image})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        zIndex: '1'
+      }
       return (
         <div className="castle-card" style={styleNotExpanded} >
           {this.jsxBuilder()}
         </div>
       )
     } else {
+
       return (
         <div className="castle-card-expanded" onClick={this.addMemory}  >
         <img src={this.props.castle.image} alt={this.props.castle.name}/>
+          
           <CreateMemory x={this.state.x}  y={this.state.y} castle={this.props.castle} updateCastle={this.updateCastle}/>
+
           <Memories memories={this.state.memories} ApiAdapter={ApiAdapter} deleteMemory={this.deleteMemory} updateMemory={this.updateMemory}/>
+
          {this.jsxBuilder()}
         </div>
       )
