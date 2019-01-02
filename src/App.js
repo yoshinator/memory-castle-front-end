@@ -6,14 +6,6 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users/")
 
 class App extends Component {
   
-  state = {
-        users: []
-  }
-    
-  componentDidMount(){
-    ApiAdapter.getAll()
-      .then(users => this.setState({ users }))
-  }
 
   render() {
     return (
@@ -27,9 +19,9 @@ class App extends Component {
         type of memory palace involves making a journey through a place
         you know well, like a building or town. Along that journey there
         are specific locations that you always visit in the same order.
-          <a href="https://sansforgetica.rmit/" >On your journey you will see this crazy font. Its a font developed by MIT, it's scientifically designed to help you remember things. </a>
+          <a href="https://sansforgetica.rmit/" >On your journey you will see this crazy font. Its a font developed by MIT. It's scientifically designed to help you remember things. </a>
         </div>
-        <Users users={this.state.users}  ApiAdapter={ApiAdapter}/>
+        <Users  ApiAdapter={ApiAdapter}/>
       </div>
     )
   }
