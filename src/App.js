@@ -19,7 +19,7 @@ class App extends Component {
         type of memory palace involves making a journey through a place
         you know well, like a building or town. Along that journey there
         are specific locations that you always visit in the same order.
-          <a href="https://sansforgetica.rmit/" >On your journey you will see this crazy font. Its a font developed by MIT. It's scientifically designed to help you remember things. </a>
+          <a href="https://sansforgetica.rmit/" rel="noopener noreferrer" target="_blank">On your journey you will see this crazy font. Its a font developed by MIT. It's scientifically designed to help you remember things. </a>
         </div>
         <Users  ApiAdapter={ApiAdapter}/>
       </div>
