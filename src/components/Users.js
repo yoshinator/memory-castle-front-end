@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import User from './User';
+import GoogleAuth from './GoogleAuth'
 
  class Users extends Component {
 
@@ -56,12 +57,17 @@ import User from './User';
 
   render() {
     if (this.isEmpty(this.state.currentUser)){
-      return <form className="sign-in-form" onSubmit={this.setCurrentUser}>
+      return (
+        <>
+      <form className="sign-in-form" onSubmit={this.setCurrentUser}>
           <input onChange={this.findUser} type="text" name="user" value={this.state.inputBox} />
           <button type="submit" name="submit">
             Sign in or Change User
           </button>
-        </form>;
+        </form>
+        <GoogleAuth />
+        </>
+      )
     }
     else {
       return (
