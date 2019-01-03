@@ -23,7 +23,7 @@ class JSONAPIAdapter {
 
   updateItem(body, id) {
     return fetch(`${this.endpoint}/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: this.headers,
       body: JSON.stringify(body)
     });
