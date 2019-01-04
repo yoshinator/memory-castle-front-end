@@ -13,9 +13,10 @@ class Memory extends Component {
   }
 
   drag = (event, updateMemory) => {
+      const div = document.getElementById(`memory-${this.state.id}`).parentElement
       const newObj = {
-        x: `${(event.clientX / window.innerWidth) * 100}%`,
-        y: `${(event.clientY / window.innerHeight) * 100}%`
+        x: `${(event.clientX / div.offsetWidth) * 100}%`,
+        y: `${(event.clientY / div.offsetHeight) * 100}%`
       }
       let {x, y} = newObj
       this.setState({x,y})
