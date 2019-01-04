@@ -32,6 +32,10 @@ export default class Castle extends Component {
   }
   handleExpand = () => {
     this.setState({expanded: !this.state.expanded})
+    ApiAdapter.getSingle(this.props.castle.id)
+      .then(resp => this.setState({
+        memories: resp.memories
+      }))
 
   }
 
@@ -71,7 +75,7 @@ export default class Castle extends Component {
   // Not being used will implement when nothing else to do. 
   updateMemory = (memoryPositionObject, id) => {
     MemoryAdapter.updateItem(memoryPositionObject, id)
-      .then(resp => resp.json())
+      .then(resp => this.props.refresh())
 
   }
   
