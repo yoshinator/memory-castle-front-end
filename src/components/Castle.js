@@ -69,15 +69,10 @@ export default class Castle extends Component {
     }
   }
   // Not being used will implement when nothing else to do. 
-  updateMemory = (memoryId) => {
-    console.log(memoryId)
-    this.setState({editing: true})
-    let div = document.getElementById(`memory-${memoryId}`)
-    if (this.state.editing) {
-      console.log("in div I want to hid")
-      div.style.display = "hidden"
-    }
-    document.addEventListener("click", () => this.setState({editing: false}))
+  updateMemory = (memoryPositionObject, id) => {
+    MemoryAdapter.updateItem(memoryPositionObject, id)
+      .then(resp => resp.json())
+
   }
   
   deleteMemory = (memoryId) => {
