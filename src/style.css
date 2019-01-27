@@ -393,17 +393,29 @@ button.edit-castle{
 .create-memory-form input{
   background:rgba(22, 17, 17, 0.466);
   width: 250px;
-  color: rgb(218, 210, 210);
+  color: rgb(242, 231, 231);
   font-size: 1.1em;
   height: 30px;
   border: none;
   
 }
 
-.create-memory-form buton{
+.create-memory-form button{
   margin: auto;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 10px;
+  padding: 3%;
+  transition: transform .20s;
+  transition: background-color 0.5s ease;
+
+
 }
 
+.create-memory-form button:hover{
+  transform: scale(1.1);
+  font-weight: 1000;
+  background-color: goldenrod; 
+}
 .delete-memory {
     position: absolute;
     right: -4px;
