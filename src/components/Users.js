@@ -6,6 +6,7 @@ import User from './User';
 
   constructor(props){
     super(props);
+    console.log(props);
     this.state = {
       inputBox: "",
       currentUser: {}
@@ -29,7 +30,7 @@ import User from './User';
    setCurrentUser = (event) => {
       event.preventDefault()
        this.createNewUser().then(currentUser =>
-         this.setState({ currentUser }))
+         this.setState({ currentUser })
        );
     }
   
