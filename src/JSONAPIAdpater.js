@@ -1,6 +1,6 @@
 class JSONAPIAdapter {
   constructor(endpoint) {
-    this.endpoint = `http://localhost:3010/${endpoint}`;
+    this.endpoint = `http://localhost:3010/memorycastle/memorycastle${endpoint}`;
     this.headers = {
       Accept: "application/json",
       "Content-Type": "application/json"
