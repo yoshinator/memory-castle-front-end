@@ -2,6 +2,7 @@
   "name": "memory-castle-front-end",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://yoanante.com/memory",
   "dependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
