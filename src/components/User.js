@@ -15,7 +15,7 @@ const Welcome = ({user}) => {
 
 
 const User = ({ user, updateCurrentUser}) => {
-  console.log(window.location.pathname);
+
   if (user.castles.length > 0 ){
     return <>
         <Welcome user={user} />

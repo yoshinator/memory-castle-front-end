@@ -6,7 +6,6 @@ import GoogleAuth from './GoogleAuth'
 
   constructor(props){
     super(props);
-    console.log(props);
     this.state = {
       inputBox: "",
       currentUser: {}
@@ -30,7 +29,7 @@ import GoogleAuth from './GoogleAuth'
    setCurrentUser = (event) => {
       event.preventDefault()
        this.createNewUser().then(currentUser =>
-         this.setState({ currentUser }, () => console.log(this.state.currentUser))
+         this.setState({ currentUser }))
        );
     }
   

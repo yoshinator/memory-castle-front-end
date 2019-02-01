@@ -11,7 +11,6 @@ export default class Castle extends Component {
   
   constructor(props){
     super(props);
-      console.log("CASTLE CONSTRUCTOR", this.props.castle.name)
     this.state ={
       name: this.props.castle.name,
       image: this.props.castle.image,
