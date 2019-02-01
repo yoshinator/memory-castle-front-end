@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import User from './User';
-import GoogleAuth from './GoogleAuth'
+// import GoogleAuth from './GoogleAuth'
 
  class Users extends Component {
 
