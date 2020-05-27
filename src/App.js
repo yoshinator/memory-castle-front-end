@@ -11,7 +11,7 @@ class App extends Component {
           Welcome to Memory Castle
         </header>
         <div className="intro">
-          A Memory Palace, is an imaginary location in
+          A memory palace is an imaginary location in
         your mind where you can store mnemonic images. The most common
         type of memory palace involves making a journey through a place
         you know well, like a building or town. Along that journey there

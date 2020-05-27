@@ -48,6 +48,7 @@ Body::before {
 
 .intro {
   color: seashell;
+  font-family: Arial, Helvetica, sans-serif;
   grid-column: 2/3;
   margin: auto;
   margin-top: 0;
@@ -117,10 +118,13 @@ Body::before {
 .user-welcome {
   grid-column: 1/2;
   margin: auto;
+  margin-top: 1em;
+  margin-bottom: 0;
   text-align: center;
   text-transform: capitalize;
   font-family: fantasy;
   font-weight: 700;
+  font-size: 1.6em;
 
 }
 
@@ -171,6 +175,14 @@ Body::before {
 
 
 /* ==============CASTLE CONTAINER AND CARDS ======================= */
+
+.no-castle-splash{
+  text-align: center;
+  margin-top: 1em;
+  font-size: 2em;
+  font-family: fantasy;
+}
+
 .castles-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
