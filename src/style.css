@@ -42,6 +42,7 @@ Body::before {
   font-family: fantasy;
   font-size: 2.1em;
   margin: auto;
+  margin-top: .5em;
   text-align: center;
 }
 
@@ -49,11 +50,14 @@ Body::before {
   color: seashell;
   grid-column: 2/3;
   margin: auto;
+  margin-top: 0;
+  line-height: 1.5;
   width: 80%;
-  background: #443737;
-  border-radius: 10px;
-  box-shadow: 5px 6px 8px #888888;
-  padding: 10px;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, #37190f 35%, #5a431f 100%);
+  border-radius: .2em;
+  box-shadow: .7em .8em 1em #37190f;
+  padding: .8em;
 
 }
 
@@ -64,17 +68,23 @@ Body::before {
 /* ==========================FORMS ========================= */
 .sign-in-form {
   grid-column: 1/2;
-  grid-row: 2/3;  
-  padding: 3%;
+  grid-row: 2/3;
+  padding: .3em;
+  padding-top: 0;
   margin: auto;
   text-align: center;
 }
 
+.signup {
+  grid-column: 1/2;
+  grid-row: 3/3;  
+}
+
 .sign-in-form input{
   background: rgb(100,100,100, .5);
-  height: 30px;
+  height: 1.9em;
   font-family: cursive;
-  text-transform: capitalize;
+  margin-bottom: .5em;  
   width: 90%;
   font-size: 1.1em;
   transition: .5s ease;
@@ -84,7 +94,9 @@ Body::before {
   background: rgba(218,165,32,.5);
 }
 
-
+.sign-in-form input::placeholder {
+  color: #37190f;
+}
 
 .sign-in-form button{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -171,8 +183,8 @@ Body::before {
   margin: auto; 
   width: 80%;
   height: 150px;
-  transition: transform .35s;
-  box-shadow: 5px 6px 8px #888888;
+  box-shadow: .3em .4em .8em #37190f;
+  transition: transform .45s ease, box-shadow .55s ease;
 }   
 
 .castle-card h2.castle-card-header {
@@ -212,7 +224,7 @@ button.edit-castle{
 
 .castle-card:hover {
   transform: scale(1.2); 
-  box-shadow: 5px 6px 8px #443737;
+  box-shadow: .5em .6em .8em #37190f;
 }
 
 /* ===================== CASTLE CARD EXPANDED ========== */
