@@ -9,6 +9,8 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users");
     name: "",
       email: "",
       password: "",
+      passwordConfirmation: "",
+      signUp: false,
       currentUser: {}
     }
 
@@ -26,7 +28,7 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users");
     return true;
   } 
 
-   findUser = (event) => {
+   handleChange = (event) => {
      if (event.target.value !== " ") {
        this.setState({ [event.target.name]: event.target.value});
      }
@@ -90,16 +92,16 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users");
       return (
         <>
       <form className="sign-in-form signup" onSubmit={this.loginUser}>
-          <input onChange={this.findUser} type="email" name="email" value={this.state.email} placeholder="your@email.com"/>
-            <input onChange={this.findUser} type="password" name="password" value={this.state.password} placeholder="password"/>
+          <input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="your@email.com"/>
+            <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
           <button type="submit" name="submit" >
             Sign in
           </button>
         </form>
       <form className="sign-in-form" onSubmit={this.createNewUser}>
-          <input onChange={this.findUser} type="text" name="name" value={this.state.name} placeholder="your name"/>
-          <input onChange={this.findUser} type="email" name="email" value={this.state.email} placeholder="your@email.com" />
-            <input onChange={this.findUser} type="password" name="password" value={this.state.password} placeholder="password must be 6 characters"/>
+          <input onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="your name"/>
+          <input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="your@email.com" />
+            <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password must be 6 characters"/>
           <button type="submit" name="submit">
             Sign up
           </button>

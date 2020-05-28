@@ -6,14 +6,18 @@ body {
   padding: 0px;
   margin: 0px;
   border: 0px;
-  min-width: 850px;
+  min-width: 600px;
   height: 100vh;
   position: relative;
   background: #b9b6b6cc;
   z-index: 1;
-
 }
 
+.fa-times-circle{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5em;
+  color: seashell;
+}
 Body::before {
   content: "";
   position: absolute;
@@ -144,6 +148,27 @@ Body::before {
   margin: 3%;
 }
 
+.create-castle-form .custom-file-upload input {
+  display: none;
+}
+
+.create-castle-form .custom-file-upload {
+  border: 1px solid black;
+  display: block;
+  background: rgb(100,100,100, .5);
+  height: 30px;
+  font-family: cursive;
+  text-transform: capitalize;
+  font-size: 1.1em;
+  margin: 3%;
+  cursor: pointer;
+}
+
+.create-castle-form .custom-file-upload:active {
+  transform: scale(1.1);
+  font-weight: 1000;
+  background-color: goldenrod; 
+}
 .create-castle-form input{
   background: rgb(100,100,100, .3);
   height: 30px;
@@ -228,10 +253,6 @@ button.edit-castle{
     position: absolute;
     right: -4px;
     top: -4px;
-    border-radius: 50%;
-    background: rgb(100, 100, 100, .4);
-    color: seashell;
-    border: 2px solid;
 }
 
 .castle-card:hover {

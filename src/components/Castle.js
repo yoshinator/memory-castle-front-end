@@ -11,15 +11,15 @@ export default class Castle extends Component {
   
   constructor(props){
     super(props);
-      console.log("CASTLE CONSTRUCTOR", this.props.castle.name)
     this.state ={
       name: this.props.castle.name,
-      image: this.props.castle.image,
+      image: this.props.castle.castle_image,
       memories: [],
       x: null, 
       y: null,
       expanded: false,
-      editing: false
+      editing: false,
+      newMem: false
     }
     
   }
@@ -41,14 +41,12 @@ export default class Castle extends Component {
   }
 
   handleEdit = (event, name=this.state.name, image=this.state.image) =>{
-    // debugger
     this.setState({ 
       name: name,
       image: image,
       editing: !this.state.editing 
     })
   }
-
   
   updateCastle= (memory) => {
     let memories = this.state.memories
@@ -58,20 +56,28 @@ export default class Castle extends Component {
     })
   }
   
-  addMemory = (event) => {
+  addMemory = (event) => {    
     if (isNaN(event.target.width) || event.target.width === 0){
       return 
-    }else {
+    }
+    else {
       this.setState({ 
+        newMem: true,
         x: (event.clientX / event.target.width) * 100 ,
         y: (event.clientY / event.target.height) * 100
       });
     }
   }
-  // Not being used will implement when nothing else to do. 
+
   updateMemory = (memoryPositionObject, id) => {
     MemoryAdapter.updateItem(memoryPositionObject, id)
       .then(resp => resp.json())
+      .then(mem => {
+        const filtered = this.state.memories.filter(memory => {
+          return memory.id !== mem.id
+        })
+        this.setState({memories: [...filtered, mem], newMem: false})
+      })
 
   }
   
@@ -82,7 +88,6 @@ export default class Castle extends Component {
       memories: newMems
     })
     MemoryAdapter.deleteItem(memoryId)
-    
   }
   
   jsxBuilder = () => {
@@ -93,21 +98,20 @@ export default class Castle extends Component {
           Min
         </button>
         <button className="edit-castle" onClick={this.handleEdit}> Edit</button>
-        <button className="delete-castle" onClick={this.handleDelete}>
-          X
-       </button>
+        {!this.state.expanded && <label className="delete-castle" onClick={this.handleDelete}>
+          <i className="far fa-times-circle"></i>
+       </label>}
        </>
     )
   }
   
   render() {
-    
     if (this.state.expanded === false && this.state.editing === false){
       const styleNotExpanded = {
         background: `url(${this.state.image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        zIndex: '1'
+        zIndex: '1',
       }
       return (
         <div className="castle-card" style={styleNotExpanded} >
@@ -115,25 +119,23 @@ export default class Castle extends Component {
         </div>
       )
 
-
-    } else if (this.state.expanded === true && this.state.editing === false){
-
+    } 
+    else if (this.state.expanded === true && this.state.editing === false){
       return (
-        <div className="castle-card-expanded" onClick={this.addMemory}  >
+        <div className="castle-card-expanded" onClick={this.addMemory} >
         <img src={this.state.image} alt={this.state.name}/>
           
-          <CreateMemory x={this.state.x}  y={this.state.y} castle={this.props.castle} updateCastle={this.updateCastle}/>
+          {this.state.newMem && <CreateMemory x={this.state.x} y={this.state.y} castle={this.props.castle} updateCastle={this.updateCastle} />}
 
-          <Memories memories={this.state.memories} ApiAdapter={ApiAdapter} deleteMemory={this.deleteMemory} updateMemory={this.updateMemory}/>
+           <Memories memories={this.state.memories} ApiAdapter={ApiAdapter} deleteMemory={this.deleteMemory} updateMemory={this.updateMemory}/>
 
          {this.jsxBuilder()}
         </div>
       )
-    } else {
-
-
+    } 
+    else {
       return (
-        <div className="castle-card-expanded editing" onClick={this.addMemory}  >
+        <div className="castle-card-expanded editing" onClick={this.addMemory} >
           <img src={this.state.image} alt={this.state.name} />
           <EditCastle handleEdit={this.handleEdit} ApiAdapter={ApiAdapter} name={this.state.name} image={this.state.image} castleId={this.props.castle.id}/>
           {this.jsxBuilder()}
