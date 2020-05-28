@@ -44,7 +44,10 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users");
 
    updateCurrentUser = (user) => {
       this.setState({
-        currentUser: user
+        currentUser: user,
+        email: "",
+        password: "",
+        passwordConfirmation: ""
       })
    }
 
@@ -88,23 +91,34 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users");
 
 
   render() {
+    console.log(this.state)
     if (this.isEmpty(this.state.currentUser)){
       return (
         <>
-      <form className="sign-in-form signup" onSubmit={this.loginUser}>
-          <input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="your@email.com"/>
-            <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password"/>
-          <button type="submit" name="submit" >
-            Sign in
-          </button>
-        </form>
-      <form className="sign-in-form" onSubmit={this.createNewUser}>
-          <input onChange={this.handleChange} type="text" name="name" value={this.state.name} placeholder="your name"/>
+          <form className="sign-in-form" onSubmit={this.state.signUp ? this.createNewUser : this.loginUser}>
+
+          { this.state.signUp && <input 
+                                  onChange={this.handleChange} 
+                                  type="text" 
+                                  name="name" 
+                                  value={this.state.name} 
+                                  placeholder="your name"
+                                 />
+          }
           <input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="your@email.com" />
-            <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password must be 6 characters"/>
+          <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password 6 characters"/>
+          { this.state.signUp && <input 
+                                      onChange={this.handleChange} 
+                                      type="password" 
+                                      name="passwordConfirmation" 
+                                      value={this.state.passwordConfirmation} 
+                                      placeholder="password 6 characters"
+                                    />
+          }
           <button type="submit" name="submit">
-            Sign up
+            {this.state.signUp ? "Sign up" : "Sign in"}
           </button>
+            {this.state.signUp ? <label className="link" onClick={() => this.setState({ signUp: false })}>Login</label> : <label className="link" onClick={() => this.setState({signUp: true})}>Sign Up</label>}
         </form>
         </>
       )

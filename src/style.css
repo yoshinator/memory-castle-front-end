@@ -70,6 +70,13 @@ Body::before {
   font-family: SansForgetica;
   color:goldenrod;
 }
+
+.link {
+  color: black;
+  cursor: pointer;
+  text-decoration: underline;
+  display: block;
+}
 /* ==========================FORMS ========================= */
 .sign-in-form {
   grid-column: 1/2;

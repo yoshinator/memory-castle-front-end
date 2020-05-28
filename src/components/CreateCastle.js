@@ -16,7 +16,7 @@ class CreateCastle extends Component {
     formData.append("castle_image", this.state.castle_image, this.state.castle_image.name);
     formData.append('name', this.state.name)
     formData.append("user_id", localStorage.getItem("id"))
-    return fetch(`http://localhost:3000/api/v1/castles`, {
+    return fetch(`https://memory-castle.herokuapp.com//api/v1/castles`, {
       method: "POST",
       headers: {
         "Accept": "application/json",
