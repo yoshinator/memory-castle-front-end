@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Memory from './Memory'
 
 class Memories extends Component {
+  
 
   renderMemories = () => {
 

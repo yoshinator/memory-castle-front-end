@@ -1,48 +1,62 @@
 import React, { Component } from 'react';
 import User from './User';
-import GoogleAuth from './GoogleAuth'
+import JSONAPIAdapter from "../JSONAPIAdpater";
+const ApiAdapter = new JSONAPIAdapter("api/v1/users");
 
  class Users extends Component {
 
-  constructor(props){
-    super(props);
-    console.log(props);
-    this.state = {
-      inputBox: "",
+  state = {
+    name: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+      signUp: false,
       currentUser: {}
     }
+
+  componentDidMount(){
+    if (localStorage.getItem('jwt') && localStorage.getItem('id')){
+      this.setCurrentUser(localStorage.getItem('id'))
+    }
   }
+  
+  isEmpty = (obj) => {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key))
+        return false;
+    }
+    return true;
+  } 
 
-   isEmpty = (obj) => {
-     for (var key in obj) {
-       if (obj.hasOwnProperty(key))
-         return false;
-     }
-     return true;
-   } 
-
-   findUser = (event) => {
+   handleChange = (event) => {
      if (event.target.value !== " ") {
-       this.setState({ inputBox: event.target.value.toLowerCase() });
+       this.setState({ [event.target.name]: event.target.value});
      }
    }
 
-   setCurrentUser = (event) => {
-      event.preventDefault()
-       this.createNewUser().then(currentUser =>
-         this.setState({ currentUser }, () => console.log(this.state.currentUser))
-       );
+   setCurrentUser = (id) => {
+      ApiAdapter.getSingle(id)
+      .then(currentUser => {
+        this.setState({currentUser})
+      })
     }
   
 
    updateCurrentUser = (user) => {
       this.setState({
-        currentUser: user
+        currentUser: user,
+        email: "",
+        password: "",
+        passwordConfirmation: ""
       })
    }
 
    createNewUser = () => {
-    return this.props.ApiAdapter.createItem({ name: this.state.inputBox })
+     if (this.state.password !== this.state.passwordConfirmation){
+       alert("Passwords don't  match please try again")
+       return
+     }
+    return ApiAdapter.createItem({ name: this.state.name, email: this.state.email, password: this.state.password })
        .then(resp => {
          if (resp.ok) {
            // Add user to something? 
@@ -52,33 +66,76 @@ import GoogleAuth from './GoogleAuth'
          }
          return resp.json()
        })
+      .then(response => {
+        localStorage.setItem('jwt', response.jwt)
+        localStorage.setItem('id', response.user.id)
+        this.setCurrentUser(response.user.id)
+      })
    }
+
+   loginUser = (e) => {
+    e.preventDefault()
+     return ApiAdapter.createItem({user: { email: this.state.email,password: this.state.password }}, 'login')
+       .then(resp => {
+         if (resp.ok) {
+           // Add user to something? 
+         }
+         else {
+           console.error(resp)
+         }
+         return resp.json()
+       })
+       .then(response => {
+         if (response.user){
+           localStorage.setItem('jwt', response.jwt)
+           localStorage.setItem('id', response.user.id)
+           this.setCurrentUser(response.user.id)
+         } else {
+           alert("Username and Password not found")
+           return
+         }
+       })
+    }
+
 
 
   render() {
+    console.log(this.state)
     if (this.isEmpty(this.state.currentUser)){
       return (
         <>
-      <form className="sign-in-form" onSubmit={this.setCurrentUser}>
-          <input onChange={this.findUser} type="text" name="user" value={this.state.inputBox} />
+          <form className="sign-in-form" onSubmit={this.state.signUp ? this.createNewUser : this.loginUser}>
+
+          { this.state.signUp && <input 
+                                  onChange={this.handleChange} 
+                                  type="text" 
+                                  name="name" 
+                                  value={this.state.name} 
+                                  placeholder="your name"
+                                 />
+          }
+          <input onChange={this.handleChange} type="email" name="email" value={this.state.email} placeholder="your@email.com" />
+          <input onChange={this.handleChange} type="password" name="password" value={this.state.password} placeholder="password 6 characters"/>
+          { this.state.signUp && <input 
+                                      onChange={this.handleChange} 
+                                      type="password" 
+                                      name="passwordConfirmation" 
+                                      value={this.state.passwordConfirmation} 
+                                      placeholder="password 6 characters"
+                                    />
+          }
           <button type="submit" name="submit">
-            Sign in or Change User
+            {this.state.signUp ? "Sign up" : "Sign in"}
           </button>
+            {this.state.signUp ? <label className="link" onClick={() => this.setState({ signUp: false })}>Login</label> : <label className="link" onClick={() => this.setState({signUp: true})}>Sign Up</label>}
         </form>
-        <GoogleAuth />
         </>
       )
     }
     else {
       return (
         <>
-        <form className="sign-in-form" onSubmit={this.setCurrentUser}>
-          <input onChange={this.findUser} type="text" name="user" value={this.state.inputBox} />
-          <button type="submit" name="submit">
-            Sign in or Change User
-          </button>
-        </form>
-        <User user={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} ApiAdapter={this.props.ApiAdapter}/>
+        <User user={this.state.currentUser} updateCurrentUser={this.updateCurrentUser} ApiAdapter={ApiAdapter}/>
         </>
       )
     }

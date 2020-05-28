@@ -7,8 +7,8 @@ class CreateMemory extends Component {
   state ={
       text: "",
       castle_id: this.props.castle.id,
-      x: "",
-      y: ""
+      x: `${this.props.x}%`,
+      y: `${this.props.y}%`
     }
 
 
@@ -50,9 +50,11 @@ class CreateMemory extends Component {
 
 
     render(){
+      console.log(this.state)
       if (this.state.x === "") {
-        return <div/>
-      }else {
+        return 
+      }
+      else {
       return (
         <div className="create-memory-form" style={{ left: `${this.state.x}`, top: `${this.state.y}` }}> 
           <form onSubmit={this.createMemory} >

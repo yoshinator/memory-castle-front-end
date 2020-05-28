@@ -6,14 +6,18 @@ body {
   padding: 0px;
   margin: 0px;
   border: 0px;
-  min-width: 850px;
+  min-width: 600px;
   height: 100vh;
   position: relative;
   background: #b9b6b6cc;
   z-index: 1;
-
 }
 
+.fa-times-circle{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5em;
+  color: seashell;
+}
 Body::before {
   content: "";
   position: absolute;
@@ -42,18 +46,23 @@ Body::before {
   font-family: fantasy;
   font-size: 2.1em;
   margin: auto;
+  margin-top: .5em;
   text-align: center;
 }
 
 .intro {
   color: seashell;
+  font-family: Arial, Helvetica, sans-serif;
   grid-column: 2/3;
   margin: auto;
+  margin-top: 0;
+  line-height: 1.5;
   width: 80%;
-  background: #443737;
-  border-radius: 10px;
-  box-shadow: 5px 6px 8px #888888;
-  padding: 10px;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, #37190f 35%, #5a431f 100%);
+  border-radius: .2em;
+  box-shadow: .7em .8em 1em #37190f;
+  padding: .8em;
 
 }
 
@@ -61,20 +70,33 @@ Body::before {
   font-family: SansForgetica;
   color:goldenrod;
 }
+
+.link {
+  color: black;
+  cursor: pointer;
+  text-decoration: underline;
+  display: block;
+}
 /* ==========================FORMS ========================= */
 .sign-in-form {
   grid-column: 1/2;
-  grid-row: 2/3;  
-  padding: 3%;
+  grid-row: 2/3;
+  padding: .3em;
+  padding-top: 0;
   margin: auto;
   text-align: center;
 }
 
+.signup {
+  grid-column: 1/2;
+  grid-row: 3/3;  
+}
+
 .sign-in-form input{
   background: rgb(100,100,100, .5);
-  height: 30px;
+  height: 1.9em;
   font-family: cursive;
-  text-transform: capitalize;
+  margin-bottom: .5em;  
   width: 90%;
   font-size: 1.1em;
   transition: .5s ease;
@@ -84,7 +106,9 @@ Body::before {
   background: rgba(218,165,32,.5);
 }
 
-
+.sign-in-form input::placeholder {
+  color: #37190f;
+}
 
 .sign-in-form button{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -105,10 +129,13 @@ Body::before {
 .user-welcome {
   grid-column: 1/2;
   margin: auto;
+  margin-top: 1em;
+  margin-bottom: 0;
   text-align: center;
   text-transform: capitalize;
   font-family: fantasy;
   font-weight: 700;
+  font-size: 1.6em;
 
 }
 
@@ -128,6 +155,27 @@ Body::before {
   margin: 3%;
 }
 
+.create-castle-form .custom-file-upload input {
+  display: none;
+}
+
+.create-castle-form .custom-file-upload {
+  border: 1px solid black;
+  display: block;
+  background: rgb(100,100,100, .5);
+  height: 30px;
+  font-family: cursive;
+  text-transform: capitalize;
+  font-size: 1.1em;
+  margin: 3%;
+  cursor: pointer;
+}
+
+.create-castle-form .custom-file-upload:active {
+  transform: scale(1.1);
+  font-weight: 1000;
+  background-color: goldenrod; 
+}
 .create-castle-form input{
   background: rgb(100,100,100, .3);
   height: 30px;
@@ -159,6 +207,14 @@ Body::before {
 
 
 /* ==============CASTLE CONTAINER AND CARDS ======================= */
+
+.no-castle-splash{
+  text-align: center;
+  margin-top: 1em;
+  font-size: 2em;
+  font-family: fantasy;
+}
+
 .castles-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -171,8 +227,8 @@ Body::before {
   margin: auto; 
   width: 80%;
   height: 150px;
-  transition: transform .35s;
-  box-shadow: 5px 6px 8px #888888;
+  box-shadow: .3em .4em .8em #37190f;
+  transition: transform .45s ease, box-shadow .55s ease;
 }   
 
 .castle-card h2.castle-card-header {
@@ -204,15 +260,11 @@ button.edit-castle{
     position: absolute;
     right: -4px;
     top: -4px;
-    border-radius: 50%;
-    background: rgb(100, 100, 100, .4);
-    color: seashell;
-    border: 2px solid;
 }
 
 .castle-card:hover {
   transform: scale(1.2); 
-  box-shadow: 5px 6px 8px #443737;
+  box-shadow: .5em .6em .8em #37190f;
 }
 
 /* ===================== CASTLE CARD EXPANDED ========== */

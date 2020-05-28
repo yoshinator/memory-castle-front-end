@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import JSONAPIAdapter from "./JSONAPIAdpater"
-import Users from "./components/Users"
-const ApiAdapter = new JSONAPIAdapter("api/v1/users/")
-
+import Users from "./components/Users";
 
 class App extends Component {
   
@@ -14,14 +11,14 @@ class App extends Component {
           Welcome to Memory Castle
         </header>
         <div className="intro">
-          A Memory Palace, is an imaginary location in
-        your mind where you can store mnemonic images. The most common
-        type of memory palace involves making a journey through a place
-        you know well, like a building or town. Along that journey there
-        are specific locations that you always visit in the same order.
+          A memory palace is an imaginary location in
+          your mind where you can store mnemonic images. The most common
+          type of memory palace involves making a journey through a place
+          you know well, like a building or town. Along that journey there
+          are specific locations that you always visit in the same order.
           <a href="https://sansforgetica.rmit/" rel="noopener noreferrer" target="_blank">On your journey you will see this crazy font. Its a font developed by MIT. It's scientifically designed to help you remember things. </a>
         </div>
-        <Users  ApiAdapter={ApiAdapter}/>
+        <Users/>
       </div>
     )
   }

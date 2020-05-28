@@ -1,22 +1,31 @@
 class JSONAPIAdapter {
   constructor(endpoint) {
-    this.endpoint = `http://localhost:3000/${endpoint}`;
+    this.endpoint = `https://memory-castle.herokuapp.com/${endpoint}`;
     this.headers = {
-      Accept: "application/json",
+      "Accept": "application/json",
       "Content-Type": "application/json"
     };
   }
   getAll() {
-    return fetch(this.endpoint).then(response => response.json());
+    return fetch(this.endpoint,{
+      method: "GET",
+      headers: { ...this.headers, Authorization: localStorage.getItem('jwt') },
+    }).then(response => response.json());
   }
+
   getSingle(id) {
-    return fetch(`${this.endpoint}/${id}`).then(response => response.json());
+    return fetch(`${this.endpoint}/${id}`, {
+      headers: { ...this.headers, Authorization: localStorage.getItem('jwt') }
+    })
+    .then(response => {
+      return response.json()
+    })
   }
   // { key: 'value', key: { key: 'value', key: 'value'} }
-  createItem(body) {
-    return fetch(this.endpoint, {
+  createItem(body, id="") {
+    return fetch(`${this.endpoint}/${id}`, {
       method: "POST",
-      headers: this.headers,
+      headers: { ...this.headers, Authorization: localStorage.getItem('jwt')},
       body: JSON.stringify(body) // { key: 'value', key: { key: 'value', key: 'value'} }
     });
   }
@@ -24,7 +33,7 @@ class JSONAPIAdapter {
   updateItem(body, id) {
     return fetch(`${this.endpoint}/${id}`, {
       method: "PATCH",
-      headers: this.headers,
+      headers: { ...this.headers, Authorization: localStorage.getItem('jwt') },
       body: JSON.stringify(body)
     });
   }
@@ -32,12 +41,11 @@ class JSONAPIAdapter {
   deleteItem(id){
     return fetch(`${this.endpoint}/${id}`, {
       method: "DELETE", 
-      headers: this.headers
+      headers: { ...this.headers, Authorization: localStorage.getItem('jwt') },
     })
       .then(response => response.json()); 
   }
 
-  
 }
 
 
