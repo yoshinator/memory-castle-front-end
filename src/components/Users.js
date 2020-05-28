@@ -52,6 +52,10 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users");
    }
 
    createNewUser = () => {
+     if (this.state.password !== this.state.passwordConfirmation){
+       alert("Passwords don't  match please try again")
+       return
+     }
     return ApiAdapter.createItem({ name: this.state.name, email: this.state.email, password: this.state.password })
        .then(resp => {
          if (resp.ok) {
@@ -82,9 +86,14 @@ const ApiAdapter = new JSONAPIAdapter("api/v1/users");
          return resp.json()
        })
        .then(response => {
-          localStorage.setItem('jwt', response.jwt)
-          localStorage.setItem('id', response.user.id)
-          this.setCurrentUser(response.user.id)
+         if (response.user){
+           localStorage.setItem('jwt', response.jwt)
+           localStorage.setItem('id', response.user.id)
+           this.setCurrentUser(response.user.id)
+         } else {
+           alert("Username and Password not found")
+           return
+         }
        })
     }
 
