@@ -52,7 +52,7 @@ class CreateMemory extends Component {
     render(){
       console.log(this.state)
       if (this.state.x === "") {
-        return 
+        return <div></div>
       }
       else {
       return (
